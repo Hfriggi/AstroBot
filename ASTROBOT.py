@@ -6,12 +6,12 @@ import urllib.request
 import time
 import numpy as np
 
-o = open('keys.txt', 'r')
+keysTXT = open('keys.txt', 'r')
 
-api_key = o.readline().strip()
-api_secret_key = o.readline().strip()
-access_token = o.readline().strip()
-access_token_secret = o.readline().strip()
+api_key = keysTXT.readline().strip()
+api_secret_key = keysTXT.readline().strip()
+access_token = keysTXT.readline().strip()
+access_token_secret = keysTXT.readline().strip()
 
 auth = tweepy.OAuthHandler(api_key, api_secret_key)
 auth.set_access_token(access_token, access_token_secret)
@@ -111,4 +111,4 @@ titulo = 'Astronomy Picture of the Day (APOD) by apod.nasa: \n' +texto + '\n' +t
 
 api.update_status_with_media(titulo, 'image_to_upload.jpeg')
 
-o.close()
+keysTXT.close()
