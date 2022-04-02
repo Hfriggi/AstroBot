@@ -84,30 +84,25 @@ def getdata2(url):
 htmldata = getdata2("https://apod.nasa.gov/apod/astropix.html") 
 soup = BeautifulSoup(htmldata, 'html.parser')
 
-Container = soup.findAll("center")[1].find("a")
-Container2 = soup.findAll("b")
-    
+infos = soup.findAll("center")[1]
+
 images = soup.find_all('img')
 for image in images:
     name = image['alt']
     link = image['src']
         
-    RealImage = 'https://apod.nasa.gov/apod/' + link
+    realImage = 'https://apod.nasa.gov/apod/' + link
 
 def download_image(url):
     fullname = "image_to_upload.jpeg"
     urllib.request.urlretrieve(url,fullname)     
-download_image(RealImage)
-            
-mensagem = 'Astronomy Picture of the Day (APOD) by apod.nasa:'
+download_image(realImage)
 
-texto = Container2[0].text.strip()
+texto_credito = infos.text.strip().replace('Copyright:', '').replace('&', '').replace('Image Credit', 'Image Credits:') + '\n'
 
-texto_credito = 'Image Credit & Copyright: ' + Container.text
+apod = 'https://apod.nasa.gov/apod/astropix.html \n'
 
-apod = 'https://apod.nasa.gov/apod/astropix.html'
-
-titulo = 'Astronomy Picture of the Day (APOD) by apod.nasa: \n' +texto + '\n' +texto_credito + '\n' + apod + '\n' + '#astrophotography #astronomy #APOD #nasa #astrobin'
+titulo = 'Astronomy Picture of the Day (APOD) by apod.nasa:\n'  + texto_credito + apod + '#astrophotography #astronomy #APOD #nasa #astrobin'
 
 api.update_status_with_media(titulo, 'image_to_upload.jpeg')
 
