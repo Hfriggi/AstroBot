@@ -1,5 +1,5 @@
 # AstroBot
-This script made in python gets the AstroPhotography Of the Day (APOD) from NASA.APOD and Astrobin APOD and post in a twitter account using Twitter API.
+This script in python gets the AstroPhotography Of the Day (APOD) from NASA.APOD and Astrobin APOD and post in a twitter account using Twitter API.
 
 For use this script, you will need to get yours keys from Twitter API and put then in a archive called keys.txt one by line in this order:
 
