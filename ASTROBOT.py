@@ -69,7 +69,6 @@ file.write(response.content)
 imageSize = os.path.getsize('astrobin.jpg')
 
 if imageSize > 5000000:
-    print('Image size: ',imageSize,' Resizing...')
     foo = Image.open('astrobin.jpg')
     imageSize = foo.size
     rgb_foo = foo.convert('RGB')
