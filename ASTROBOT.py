@@ -44,6 +44,7 @@ soup = BeautifulSoup(g.text, 'html.parser')
 infos = soup.find( "div", class_= 'body').text.strip('\n')
 specs = infos.replace('Imaging Telescopes Or Lenses', 'Telescope:').replace('Imaging Cameras', 'Camera:').replace('Software','Software:').replace('Accessories','Accessories:').replace('Guiding Telescopes Or Lenses','GuideScope:').replace('Guiding Cameras','Guider:').replace('Mounts', 'Mount:').replace('Filters', 'Filters:')
 specs = specs.replace('\n\n·\n\n', ', ')
+specs = specs.encode('utf-8').decode('ascii', 'ignore')
 
 if len(specs) > 279:
     specs = specs[:279]
