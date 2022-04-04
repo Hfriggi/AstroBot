@@ -17,7 +17,6 @@ auth = tweepy.OAuthHandler(api_key, api_secret_key)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth, wait_on_rate_limit = True)
 
-
 #ASTROBIN
 
 def getdata(url): 
@@ -59,20 +58,29 @@ for image in images:
     link = image['src']   
     
 
-path = "astrobin.jpeg"
+path = "astrobin.jpg"
 response = requests.get(link, headers={'User-Agent': 'Mozilla/5.0'})
 file = open(path, "wb")
 file.write(response.content)
 
-texto_credito2 = 'Image Credit & Copyright: ' + credito.text.strip()
+imageSize = os.path.getsize('astrobin.jpg')
 
+if imageSize > 5000000:
+    print('Image size: ',imageSize,' Resizing...')
+    foo = Image.open('astrobin.jpg')
+    imageSize = foo.size
+    rgb_foo = foo.convert('RGB')
+    rgb_foo = rgb_foo.resize((imageSize), Image.ANTIALIAS)
+    rgb_foo.save('astrobin.jpg', optimize=True, quality=85)
+
+texto_credito2 = 'Image Credit & Copyright: ' + credito.text.strip()
 
 textoposta = 'Image Of The Day (IOTD) by Astrobin: \n' + titulo[0].text.strip() + '\n' + texto_credito2 + '\n' + linke + '\n' + '#astrophotography #astronomy #APOD #nasa #astrobin' + '\n'
 
 if len(textoposta) > 279:
     textoposta = textoposta[:279]
 
-media_id = api.media_upload('astrobin.jpeg').media_id
+media_id = api.media_upload('astrobin.jpg').media_id
 original_tweet = api.update_status(textoposta, media_ids=[media_id])
 reply1_tweet = api.update_status(status=specs, in_reply_to_status_id=original_tweet.id, auto_populate_reply_metadata = True)
 
