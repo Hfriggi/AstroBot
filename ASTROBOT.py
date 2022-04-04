@@ -1,3 +1,4 @@
+from pickletools import optimize
 from time import time
 import tweepy
 import requests 
@@ -5,6 +6,8 @@ from bs4 import BeautifulSoup
 import urllib.request
 import time
 import numpy as np
+from PIL import Image
+import os
 
 keysTXT = open('keys.txt', 'r')
 
