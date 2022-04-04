@@ -1,5 +1,4 @@
 from pickletools import optimize
-from time import time
 import tweepy
 import requests 
 from bs4 import BeautifulSoup
