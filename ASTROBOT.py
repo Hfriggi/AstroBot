@@ -3,8 +3,6 @@ import tweepy
 import requests 
 from bs4 import BeautifulSoup
 import urllib.request
-import time
-import numpy as np
 from PIL import Image
 import os
 
