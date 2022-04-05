@@ -77,10 +77,6 @@ reply1_tweet = api.update_status(status=specs, in_reply_to_status_id=original_tw
 
 #NASA
 
-def getdata2(url): 
-    r = requests.get(url) 
-    return r.text 
-
 htmldata = getdata("https://apod.nasa.gov/apod/astropix.html") 
 soup = BeautifulSoup(htmldata, 'html.parser')
 
