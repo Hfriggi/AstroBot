@@ -25,6 +25,19 @@ def downloadImage(url):
     fullname = "image_to_upload.jpeg"
     urllib.request.urlretrieve(url,fullname) 
 
+def downloadImageAstrobin(url):
+    path = "astrobin.jpg"
+    response = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'})
+    file = open(path, "wb")
+    file.write(response.content)
+
+def resizeImage():
+    foo = Image.open('astrobin.jpg')
+    imageSize = foo.size
+    rgb_foo = foo.convert('RGB')
+    rgb_foo = rgb_foo.resize((imageSize), Image.ANTIALIAS)
+    rgb_foo.save('astrobin.jpg', optimize=True, quality=85)
+
 #ASTROBIN
 
 htmldata = getdata("https://www.astrobin.com/iotd/archive/") 
@@ -52,19 +65,12 @@ soup = BeautifulSoup(htmldata, 'html.parser')
 
 astrobinImageLink = soup.find('figure').find('img')['src']
 
-path = "astrobin.jpg"
-response = requests.get(astrobinImageLink, headers={'User-Agent': 'Mozilla/5.0'})
-file = open(path, "wb")
-file.write(response.content)
+downloadImageAstrobin(astrobinImageLink)
 
 imageSize = os.path.getsize('astrobin.jpg')
 
 if imageSize > 5000000:
-    foo = Image.open('astrobin.jpg')
-    imageSize = foo.size
-    rgb_foo = foo.convert('RGB')
-    rgb_foo = rgb_foo.resize((imageSize), Image.ANTIALIAS)
-    rgb_foo.save('astrobin.jpg', optimize=True, quality=85)
+    resizeImage()
 
 creditsText = 'Image Credit & Copyright: ' + credits.text.strip()
 
