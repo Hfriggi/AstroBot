@@ -21,7 +21,7 @@ def getdata(url):
     r = requests.get(url) 
     return r.text 
 
-def download_image(url):
+def downloadImage(url):
     fullname = "image_to_upload.jpeg"
     urllib.request.urlretrieve(url,fullname) 
 
@@ -84,7 +84,7 @@ infos = soup.findAll("center")[1]
 
 linkToNasaImage = soup.find('img')['src']   
 nasaImageLink = 'https://apod.nasa.gov/apod/' + linkToNasaImage        
-download_image(nasaImageLink)
+downloadImage(nasaImageLink)
 
 infos = infos.text.strip().replace('Copyright:', '').replace('&', '').replace('Image Credit', 'Image Credits:') + '\n'
 
