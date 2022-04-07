@@ -13,4 +13,9 @@ need to be in the same folder than ASTROBOT.py
 
 This script generate 2 jpeg files, one named file_to_upload.jpeg and another called astrobin.jpeg and use this 2 images to make the post in twitter.
 
+The posts will be like the images bellow:
+
+![image](https://user-images.githubusercontent.com/91426980/162233963-2faf2f9a-d7a8-4ea4-b6f6-dfbcd6fe1054.png)
+![image](https://user-images.githubusercontent.com/91426980/162234141-d3347aad-8b65-4f46-9594-abad576c1e69.png)
+
 Enjoy!
