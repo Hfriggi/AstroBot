@@ -3,10 +3,10 @@ This script in python gets the AstroPhotography Of the Day (APOD) from NASA.APOD
 
 For use this script, you will need to get yours keys from Twitter API and put then in a archive called keys.txt one by line in this order:
 
-api_key '\n' 
-api_secret_key '\n'
-access_token '\n'
-access_token_secret '\n'
+api_key <br /> 
+api_secret_key <br />
+access_token <br />
+access_token_secret <br />
 
 Make sure the api_key is in the first line, api_secret_key in second line, acess_token in third line and acess_token_secret in the last line. And, of course, this keys.txt
 need to be in the same folder than ASTROBOT.py
