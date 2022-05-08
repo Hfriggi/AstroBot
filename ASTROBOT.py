@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 from PIL import Image
 import os
+import boto3
 
 keysTxtFile = open('keys.txt', 'r')
 
@@ -17,6 +18,15 @@ authentificatorApi = tweepy.OAuthHandler(apiKey, apiSecretKey)
 authentificatorApi.set_access_token(accessToken, accessSecretToken)
 api = tweepy.API(authentificatorApi, wait_on_rate_limit = True)
 
+def downloadImageS3(url):
+    r = requests.get(url, stream=True)
+    session = boto3.Session()
+    s3 = session.resource('s3')
+    bucket_name = 'YourBucketName' # YourBucketName is the name of your bucket in S3
+    key = 'image.jpg' # key is the name of file on your bucket
+    bucket = s3.Bucket(bucket_name)
+    bucket.upload_fileobj(r.raw, key)
+ 
 def getdata(url): 
     r = requests.get(url) 
     return r.text 
