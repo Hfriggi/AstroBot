@@ -19,7 +19,7 @@ authentificatorApi.set_access_token(accessToken, accessSecretToken)
 api = tweepy.API(authentificatorApi, wait_on_rate_limit = True)
 
 def downloadImageS3(url):
-    r = requests.get(url, stream=True)
+    r = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, stream=True)
     session = boto3.Session()
     s3 = session.resource('s3')
     bucket_name = 'YourBucketName' # YourBucketName is the name of your bucket in S3
