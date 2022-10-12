@@ -7,15 +7,29 @@ from PIL import Image
 import os
 import boto3
 
-keysTxtFile = open('keys.txt', 'r')
+txtFileName = 'keys.txt'
+delimiter = ':'
 
-apiKey = keysTxtFile.readline().strip()
-apiSecretKey = keysTxtFile.readline().strip()
-accessToken = keysTxtFile.readline().strip()
-accessSecretToken = keysTxtFile.readline().strip()
+file = open(txtFileName, 'r')
+
+def findValues(string):
+    string = string.rstrip('\n')
+    value = string[string.index(delimiter)+1:]
+    value = value.replace(' ','')
+    return value
+
+for line in file:
+    if line.startswith('api_key'):
+        apiKey = findValues(line)
+    if line.startswith('api_secret'):
+        apiSecretKey = findValues(line)
+    if line.startswith('access_token'):
+        accessToken = findValues(line)
+    if line.startswith('access_secret'):
+        accessSecret = findValues(line)
 
 authentificatorApi = tweepy.OAuthHandler(apiKey, apiSecretKey)
-authentificatorApi.set_access_token(accessToken, accessSecretToken)
+authentificatorApi.set_access_token(accessToken, accessSecret)
 api = tweepy.API(authentificatorApi, wait_on_rate_limit = True)
 
 def downloadImageS3(url):
