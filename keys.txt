@@ -1,4 +1,4 @@
-put yours api_key 
-put yours api_secret_key 
-put yours access_token
-put yours access_token_secret
+api_key: put here your api_key 
+api_secret: put here your api_secret_key 
+access_token: put here your access_token
+access_secret: put here your access_token_secret
