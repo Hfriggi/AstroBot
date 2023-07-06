@@ -46,13 +46,17 @@ def postImages(event=None,context=None):
 
         imageMedium = response['url_hd']
         imageTiny = response['url_regular']
-        skyPlot = response['url_advanced_skyplot']
         telescopes = response['imaging_telescopes']
         cameras = response['imaging_cameras']
         user = response['user']
         tittle = response['title']
         telescopes = ', '.join(map(str, telescopes))
         cameras = ', '.join(map(str, cameras))
+
+        if response['url_advanced_skyplot'] == None:
+            skyPlot = response['url_skyplot']
+        else:
+            skyPlot = response['url_advanced_skyplot']
 
         creditsText = 'Image Credit & Copyright: ' + user
         linkImageUrl = 'https://astrobin.com' + image_value
